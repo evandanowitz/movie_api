@@ -67,3 +67,7 @@ app.get('/', (req, res) => {
 
 app.use(express.static('public'));
 
+app.get('/documentation.html', (req, res) => {
+    res.sendFile('public/documentation.html', {root: __dirname});
+});
+
