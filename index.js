@@ -74,6 +74,10 @@ app.get('/documentation.html', (req, res) => {
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 app.use(morgan('combined', {stream: accessLogStream}));
 
+app.use((req, res) => {
+    res.status(404).send('Page Not Found!');
+  });
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
