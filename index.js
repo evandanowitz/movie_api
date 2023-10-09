@@ -57,3 +57,7 @@ let topMovies = [
     },
 ];
 
+app.get('/movies', (req, res) => {
+    res.json(topMovies);
+});
+
