@@ -71,3 +71,6 @@ app.get('/documentation.html', (req, res) => {
     res.sendFile('public/documentation.html', {root: __dirname});
 });
 
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+app.use(morgan('combined', {stream: accessLogStream}));
+
