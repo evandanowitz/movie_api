@@ -1,17 +1,112 @@
 <!DOCTYPE html lang=en>
+
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta viewport="width=device-width, initial-scale=1">
-        <title>myFlix API</title>
-    </head>
-    <body>
-        <h1>Documentation Page</h1>
-        <p>
-            This myFlix API is one of the server-side component of the myFlix web application. This API was built using
-            JavaScript and Node.js. It interacts with a database that stores data about different movies, and will be accessible via
-            the HTTP methods GET and POST.
-        </p>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta viewport="width=device-width, initial-scale=1">
+    <title>myFlix API</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+
+<body>
+    <h1 class="page-header">Documentation Page</h1>
+
+    <p class="documentation-paragraph">
+        This myFlix API is one of the server-side component of the myFlix web application.
+        <br>
+        <br>
+        This API was built using JavaScript and Node.js. It interacts with a database that stores data about different movies, and will be accessible via the HTTP methods GET and POST.
+    </p>
+
+    <div class="table container">
+        <table class="table">
+            <thead class="entire-table-header">
+                <tr class="table-headers">
+                    <th>Business Logic</th>
+                    <th>URL</th>
+                    <th>HTTP Request Method</th>
+                    <th>Request body data format</th>
+                    <th>Response body data format</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+
+                <tr class="all-movies">
+                    <td>Return a list of all movies</td>
+                    <td>/movies</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>JSON object holding data about all movies</td>
+                </tr>
+
+                <tr class="single-movie-data">
+                    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by Name</td>
+                    <td>/movies/:title</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>JSON object holding data about a single movie containing properties for a description/genre/director/image URL</td>
+                </tr>
+
+                <tr class="genre-data">
+                    <td>Return data about a genre (description) by Name (e.g., “Thriller”)</td>
+                    <td>/genres/:name</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>JSON object holding data about a specific genre containing a description with data</td>
+                </tr>
+
+                <tr class="director-data">
+                    <td>Return data about a director (bio, birth year, death year) by name</td>
+                    <td>/directors/:name</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>JSON object holding data about a specific director containing a description with data</td>
+                </tr>
+
+                <tr class="add-users">
+                    <td>Allow new users to register</td>
+                    <td>/users/register</td>
+                    <td>POST</td>
+                    <td>JSON object holding data about user to be added</td>
+                    <td>JSON object holding data about new user that was created</td>
+                </tr>
+
+                <tr class="add-favorites">
+                    <td>Allow users to add a movie to their list of favorites</td>
+                    <td>/users/favorites/add/:title</td>
+                    <td>POST</td>
+                    <td>JSON object holding data about movie to be added to favorites</td>
+                    <td>Show only a text that a movie has been added</td>
+                </tr>
+
+                <tr class="update-users">
+                    <td>Allow users to update their user info (username)</td>
+                    <td>/users/update/:username</td>
+                    <td>PUT</td>
+                    <td>JSON object holding data about user to be updated</td>
+                    <td>JSON object holding data about user that was updated and text indicating whether the user was successfully updated</td>
+                </tr>
+
+                <tr class="remove-users">
+                    <td>Allow existing users to deregister</td>
+                    <td>/users/deregister/:username</td>
+                    <td>DELETE</td>
+                    <td>JSON object holding data about user to be removed</td>
+                    <td>Text indicating whether user was successfully removed</td>
+                </tr>
+                
+                <tr class="remove-favorites">
+                    <td>Allow users to remove a movie to their list of favorites</td>
+                    <td>/users/favorites/remove/:title</td>
+                    <td>DELETE</td>
+                    <td>JSON object holding data about movie to be removed from favorites</td>
+                    <td>Show only a text that a movie has been removed</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
 </html>
