@@ -70,15 +70,6 @@ app.get('/documentation.html', (req, res) => {
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 app.use(morgan('combined', {stream: accessLogStream}));
 
-app.use((req, res) => {
-    res.status(404).send('Page Not Found!');
-});
-
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
-});
-
 // Return a list of ALL movies to the user
 app.get('/movies', (req, res) => {
     res.send('GET request for all movies');
@@ -86,52 +77,51 @@ app.get('/movies', (req, res) => {
 
 // Return data about a single movie by title to the user
 app.get('/movies/:title', (req, res) => {
-    const title = req.params.title;
     res.send(`GET request for movie titled: ${req.params.title}`);
 });
 
 // Return data about a genre by name
 app.get('/genres/:name', (req, res) => {
-    const name = req.params.name;
     res.send(`GET request for data about a genre (description) named: ${req.params.name}`);
 });
 
 // Return data about a director by name
 app.get('/directors/:name', (req, res) => {
-    const name = req.params.name;
     res.send(`GET request for data about a director (bio, birth year, death year) named: ${req.params.name}`);
 });
 
 // Allow new users to register
 app.post('/users/register', (req, res) => {
-    const username = req.params.username;
-    const password = req.params.password;
     res.send(`POST request to allow new users to register with a ${req.params.username} and ${req.params.password}`);
 });
 
 // Allow users to update their user info (username)
 app.put('/users/update/:username', (req, res) => {
-    const username = req.params.username;
     res.send(`PUT request to allow users to update their user info using their ${req.params.username}`);
 });
 
 // Allow users to add a movie to their list of favorites
 app.post('/users/favorites/add/:title', (req, res) => {
-    const username = req.params.title;
     res.send(`POST request to allow users to add the movie titled: ${req.params.title} to their list of favorites`);
 });
 
 // Allow existing users to deregister
 app.delete('/users/deregister/:username', (req, res) => {
-    const username = req.params.username;
-    const password = req.params.password;
     res.send(`DELETE request to allow new users to deregister with a ${req.params.username} and ${req.params.password}`);
 });
 
 // Allow users to remove a movie from their list of favorites
 app.delete('/users/favorites/remove/:title', (req, res) => {
-    const title = req.params.title;
     res.send(`DELETE request to allow users to remove the movie titled: ${req.params.title} from their list of favorites`);
+});
+
+app.use((req, res) => {
+    res.status(404).send('Page Not Found!');
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
 
 app.listen(8080, () => {
