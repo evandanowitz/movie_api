@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const express = require('express'),
 morgan = require('morgan'),
 fs = require('fs'),
