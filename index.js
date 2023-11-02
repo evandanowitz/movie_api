@@ -1,10 +1,15 @@
+// Imports Mongoose library, allowing you to interact with MongoDB using JS
 const mongoose = require('mongoose');
+// Imports 'models.js' module. Contains the Mongoose models for the app
 const Models = require('./models.js');
 
+// References Mongoose 'movies' model. Represents 'movies' collection in MongoDB db
 const Movies = Models.Movie;
+// References Mongoose 'users' model. Represents 'users' collection in MongoDB db
 const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/cfDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/cfDB', // Establishes a connection to a MongoDB db running locally
+{useNewUrlParser: true, useUnifiedTopology: true}); // Ensures Mongoose uses latest connection logic
 
 const express = require('express'),
 morgan = require('morgan'),
