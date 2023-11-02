@@ -64,7 +64,7 @@
                     <td>JSON object holding data about a specific director containing a description with data</td>
                 </tr>
 
-                <tr class="add-users">
+                <tr class="add-new-users">
                     <td>Allow new users to register</td>
                     <td>/users</td>
                     <td>POST</td>
@@ -72,9 +72,17 @@
                     <td>JSON object holding data about new user that was created</td>
                 </tr>
 
+                <tr class="all-users">
+                    <td>Get list of all users</td>
+                    <td>/users</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>JSON object holding data about all users</td>
+                </tr>
+
                 <tr class="user-by-username">
                     <td>Get user by username</td>
-                    <td>/users</td>
+                    <td>/users/:Username</td>
                     <td>GET</td>
                     <td>JSON object holding data about user you're looking for</td>
                     <td>JSON object holding data about specific user you searched for by Username</td>
@@ -82,15 +90,15 @@
 
                 <tr class="add-favorites">
                     <td>Allow users to add a movie to their list of favorites</td>
-                    <td>/users/favorites/add/:title</td>
+                    <td>/users/:Username/movies/:MovieID</td>
                     <td>POST</td>
                     <td>JSON object holding data about movie to be added to favorites</td>
-                    <td>Show only a text that a movie has been added</td>
+                    <td>Show text that movie was added successfully/unsuccessfully to favorites</td>
                 </tr>
 
                 <tr class="update-users">
                     <td>Allow users to update their user info (username)</td>
-                    <td>/users/update/:username</td>
+                    <td>/users/:Username</td>
                     <td>PUT</td>
                     <td>JSON object holding data about user to be updated</td>
                     <td>JSON object holding data about user that was updated and text indicating whether the user was successfully updated</td>
@@ -98,18 +106,18 @@
 
                 <tr class="remove-users">
                     <td>Allow existing users to deregister</td>
-                    <td>/users/deregister/:username</td>
+                    <td>/users/:Username</td>
                     <td>DELETE</td>
-                    <td>JSON object holding data about user to be removed</td>
-                    <td>Text indicating whether user was successfully removed</td>
+                    <td>JSON object holding data about Username of user to be removed</td>
+                    <td>Text indicating whether user was successfully removed or not</td>
                 </tr>
                 
                 <tr class="remove-favorites">
                     <td>Allow users to remove a movie to their list of favorites</td>
-                    <td>/users/favorites/remove/:title</td>
+                    <td>/users/:Username/movies/:MovieID</td>
                     <td>DELETE</td>
                     <td>JSON object holding data about movie to be removed from favorites</td>
-                    <td>Show only a text that a movie has been removed</td>
+                    <td>Show text that movie was added successfully/unsuccessfully from favorites</td>
                 </tr>
 
             </tbody>
