@@ -16,6 +16,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+let auth = require('./auth')(app); // Imports 'auth.js' file into project
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to myFlix!');
