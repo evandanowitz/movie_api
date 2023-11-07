@@ -18,6 +18,7 @@ app.use(express.urlencoded({extended: true}));
 
 let auth = require('./auth')(app); // Imports 'auth.js' file into project
 
+const passport = require('passport'); // Requires Passport module
 
 app.get('/', (req, res) => {
     res.send('Welcome to myFlix!');
