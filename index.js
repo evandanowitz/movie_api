@@ -18,6 +18,8 @@ app.use(express.urlencoded({extended: true}));
 
 const cors = require('cors');
 
+const { check, validationResult } = require('express-validator');
+
 let auth = require('./auth')(app); // Imports 'auth.js' file into project
 
 const passport = require('passport'); // Requires Passport module
