@@ -23,7 +23,22 @@ passport.use (
             message: 'Incorrect username or password.',
           });
         }
-    )
+        // Hash any password entered by user when logging in before comparing it to password stored in MongoDB
+        if (!user.validatePassword(password)) { // RETURN TO THIS FROM EXERCISE
+          console.log('incorrect password');
+          return callback(null, false, { message: 'Incorrect password.' });
+        }
+        console.log('finished');
+        return callback(null, user);
+      })
+      .catch((error) => {
+        if (error) {
+          console.log(error);
+          return callback(error);
+        }
+      })
+    }
+  )
 );
 
 passport.use(new JWTStrategy({
