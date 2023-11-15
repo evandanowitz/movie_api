@@ -4,6 +4,7 @@ const Models = require('./models.js'); // Imports 'models.js' file containing Mo
 const Movies = Models.Movie; // References Mongoose 'movies' model. Represents 'movies' collection in MongoDB db
 const Users = Models.User; // References Mongoose 'users' model. Represents 'users' collection in MongoDB db
 
+mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 /*
 mongoose.connect('mongodb://localhost:27017/cfDB', // Establishes a connection to a MongoDB db running locally
