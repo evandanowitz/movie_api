@@ -215,3 +215,4 @@ Timestamp: Mon Oct 09 2023 14:08:34 GMT-0400 (Eastern Daylight Time)
 ::1 - - [18/Oct/2023:19:18:08 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 ::1 - - [18/Oct/2023:19:18:11 +0000] "GET /css/styles.css HTTP/1.1" 404 15 "http://localhost:8080/documentation.html" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"
 ::1 - - [18/Oct/2023:19:32:24 +0000] "DELETE /users/favorites/remove/:title HTTP/1.1" 200 93 "-" "PostmanRuntime/7.33.0"
+127.0.0.1 - - [16/Nov/2023:19:51:22 +0000] "POST /users HTTP/1.1" 201 166 "-" "PostmanRuntime/7.34.0"
