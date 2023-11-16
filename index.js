@@ -6,10 +6,8 @@ const Users = Models.User; // References Mongoose 'users' model. Represents 'use
 
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-/*
-mongoose.connect('mongodb://localhost:27017/cfDB', // Establishes a connection to a MongoDB db running locally
-{useNewUrlParser: true, useUnifiedTopology: true}); // Ensures Mongoose uses latest connection logic
-*/
+// mongoose.connect('mongodb://localhost:27017/cfDB', // Establishes a connection to a MongoDB db running locally
+// {useNewUrlParser: true, useUnifiedTopology: true}); // Ensures Mongoose uses latest connection logic
 
 const express = require('express'),
 morgan = require('morgan'),
@@ -121,7 +119,7 @@ app.post('/users',
           .create({
             ID: req.body.Id, // Integer
             Username: req.body.Username, // String
-            Password: req.body.Password, // String
+            Password: hashedPassword, // String
             Email: req.body.Email, // String
             Birthday: req.body.Birthday // Date
           })
