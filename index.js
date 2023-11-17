@@ -116,8 +116,7 @@ app.post('/users', // POST new user
   
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
-      // return res.status(422).json({ errors: errors.send('Password is required') });
-  }
+      return res.status(422).send({ error: 'Password is required' }); // trying to send a message instead of array of errors
   
   let hashedPassword = Users.hashPassword(req.body.Password); // Hash any password entered by user when registering before storing it in the MongoDB database
   await Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
@@ -160,7 +159,8 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), as
 app.put('/users/:Username', 
 [
   check('Username', 'Username is required').isLength({min: 5}),
-  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty()
 ],
 passport.authenticate('jwt', { session: false }), async (req, res) => { // PUT users to update their user info (username)
     // Condition to check added here
