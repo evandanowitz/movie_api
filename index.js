@@ -143,7 +143,7 @@ app.post('/users', // POST new user
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-});
+}});
 
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), async (req, res) => { // GET a user by username
     await Users.findOne({ Username: req.params.Username })
