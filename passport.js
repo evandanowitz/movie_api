@@ -26,7 +26,9 @@ passport.use (
         // Hash any password entered by user when logging in before comparing it to password stored in MongoDB
         if (!user.validatePassword(password)) { // RETURN TO THIS FROM EXERCISE
           console.log('incorrect password');
-          return callback(null, false, { message: 'Incorrect password.' });
+          return callback(null, false, {
+            message: 'Incorrect password',
+          });
         }
         console.log('finished');
         return callback(null, user);
@@ -36,7 +38,7 @@ passport.use (
           console.log(error);
           return callback(error);
         }
-      });
+      })
     }
   )
 );
@@ -45,11 +47,11 @@ passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'your_jwt_secret'
 }, async (jwtPayload, callback) => {
-    return await Users.findById(jwtPayload._id)
-      .then((user) => {
-        return callback(null, user);
-      })
-        .catch((error) => {
-          return callback(error)
-        });
+  return await Users.findById(jwtPayload._id)
+    .then((user) => {
+      return callback(null, user);
+    })
+    .catch((error) => {
+      return callback(error);
+    })
 }));
