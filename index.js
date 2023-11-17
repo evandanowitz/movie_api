@@ -111,11 +111,12 @@ app.post('/users', // POST new user
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
-  ], async (req, res) => { // POST a new user
+  ], async (req, res) => {
     let errors = validationResult(req); // Check the validation object for errors
   
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+      // return res.status(422).json({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.send('Password is required') });
   }
   
   let hashedPassword = Users.hashPassword(req.body.Password); // Hash any password entered by user when registering before storing it in the MongoDB database
