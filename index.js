@@ -122,9 +122,24 @@ app.post('/users',
   ], async (req, res) => {
     let errors = validationResult(req);
   
+    if (!errors.isLength()) {
+      // return res.status(422).json({ errors: errors.array() });
+      return res.status(422).send('Username requires a five character minimum');
+    }
+
+    if (!errors.isAlphanumeric()) {
+      // return res.status(422).json({ errors: errors.array() });
+      return res.status(422).send('Username contains non alphanumeric characters - not allowed.');
+    }
+
     if (!errors.isEmpty()) {
       // return res.status(422).json({ errors: errors.array() });
-      return res.status(422).send('Password required');
+      return res.status(422).send('Password is required');
+    }
+
+    if (!errors.isEmail()) {
+      // return res.status(422).json({ errors: errors.array() });
+      return res.status(422).send('Username contains non-alphanumeric characters - not allowed');
     }
   
   let hashedPassword = Users.hashPassword(req.body.Password);
