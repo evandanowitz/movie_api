@@ -1,11 +1,11 @@
-const express = require('express'),
-  morgan = require('morgan'),
-  fs = require('fs'),
-  path = require('path');
-  mongoose = require('mongoose');
-  Models = require('./models.js');
-  cors = require('cors');
-  const { check, validationResult } = require('express-validator');
+const express = require('express');
+const morgan = require('morgan');
+const fs = require('fs');
+const path = require('path');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+const cors = require('cors');
+const { check, validationResult } = require('express-validator');
 
 const Movies = Models.Movie;
 const Users = Models.User;
