@@ -2,6 +2,7 @@ const jwtSecret = 'your_jwt_secret'; // Must be same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
   passport = require('passport');
+  
   require('./passport'); // Your local passport file
 
 let generateJWTToken = (user) => {

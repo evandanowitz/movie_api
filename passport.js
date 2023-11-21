@@ -1,5 +1,5 @@
 const passport = require('passport'),
-  LocalStrategy = require('passport-local').Strategy,
+  LocalStrategy = require('passport-local').Strategy, // Defines basic HTTP authentication for login requests
   Models = require('./models.js'),
   passportJWT = require('passport-jwt');
 
@@ -43,9 +43,9 @@ passport.use (
   )
 );
 
-passport.use(new JWTStrategy({
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'your_jwt_secret'
+passport.use(new JWTStrategy({ // JWT authentication code. Allows you to authenticate users based on the JWT submitted alongside their request
+  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), // JWT is extracted from the header of the HTTP request. This JWT is called the "bearer token"
+  secretOrKey: 'your_jwt_secret' // Secret key needed to verify signature of the JWT
 }, async (jwtPayload, callback) => {
   return await Users.findById(jwtPayload._id)
     .then((user) => {
