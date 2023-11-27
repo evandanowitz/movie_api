@@ -32,7 +32,6 @@ const passport = require('passport'); // Requires Passport module
 require('./passport'); // Imports 'passport.js' file
 
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
-// mongoose.connect('mongodb://localhost:27017/cfDB', {useNewUrlParser: true, useUnifiedTopology: true}); // Establish connection to local MongoDB db
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
@@ -224,7 +223,7 @@ app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { sess
 
 // DELETE allow users to remove a movie from their list of favorites
 app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  await Users.findOneAndRemove({ Username: req.params.Username }, {
+  await Users.findOneAndUpdate({ Username: req.params.Username }, {
     $pull: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }) // This line makes sure that the updated document is returned
