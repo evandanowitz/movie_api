@@ -33,7 +33,7 @@
             <tbody class="table-body">
 
                 <tr class="all-movies">
-                    <td>Return a list of all movies</td>
+                    <td>Read a list of all movies</td>
                     <td>/movies</td>
                     <td>GET</td>
                     <td>None</td>
@@ -41,11 +41,11 @@
                 </tr>
 
                 <tr class="single-movie-data">
-                    <td>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by Name</td>
+                    <td>Return data (Description, Genre, Director, Image URL, Featured: Y/N) about a single movie by Name (e.g., "The Departed")</td>
                     <td>/movies/:title</td>
                     <td>GET</td>
                     <td>None</td>
-                    <td>JSON object holding data about a single movie containing properties for a description/genre/director/image URL</td>
+                    <td>JSON object holding data about a single movie specified by Name</td>
                 </tr>
 
                 <tr class="genre-data">
@@ -53,27 +53,30 @@
                     <td>/genres/:name</td>
                     <td>GET</td>
                     <td>None</td>
-                    <td>JSON object holding data about a specific genre containing a description with data</td>
+                    <td>JSON object holding data about a specified genre</td>
                 </tr>
 
                 <tr class="director-data">
-                    <td>Return data about a director (bio, birth year, death year) by name</td>
+                    <td>Return data about a director (bio, birth year, death year) by Name (e.g., "Martin Scorsese")</td>
                     <td>/directors/:name</td>
                     <td>GET</td>
                     <td>None</td>
-                    <td>JSON object holding data about a specific director containing a description with data</td>
+                    <td>JSON object holding data about a specified director</td>
                 </tr>
 
                 <tr class="add-new-user">
                     <td>Allow new users to register</td>
                     <td>/users</td>
                     <td>POST</td>
-                    <td>JSON object holding data about user to be added</td>
-                    <td>JSON object holding data about new user that was created</td>
+                    <td>
+                      JSON object holding data about user to be added (Username, Password and Email required).
+                      Username must be a minimum of five characters and be alphanumeric. Password required. Email must be valid (include a '@' and a '.')
+                    </td>
+                    <td>JSON object holding data about new user that was created or an error message if unsuccessful</td>
                 </tr>
 
                 <tr class="all-users">
-                    <td>Get list of all users</td>
+                    <td>Read a list of all users</td>
                     <td>/users</td>
                     <td>GET</td>
                     <td>None</td>
@@ -81,27 +84,27 @@
                 </tr>
 
                 <tr class="user-by-username">
-                    <td>Get user by username</td>
+                    <td>Read a user by username</td>
                     <td>/users/:Username</td>
                     <td>GET</td>
-                    <td>JSON object holding data about user you're looking for</td>
-                    <td>JSON object holding data about specific user you searched for by Username</td>
+                    <td>JSON object holding data about user you're looking for (Username)</td>
+                    <td>JSON object holding data about specific user you searched for</td>
                 </tr>
 
                 <tr class="add-favorite">
-                    <td>Allow users to add a movie to their list of favorites</td>
+                    <td>Allow users to add a movie to their FavoriteMovies list</td>
                     <td>/users/:Username/movies/:MovieID</td>
                     <td>POST</td>
-                    <td>JSON object holding data about movie to be added to favorites</td>
+                    <td>JSON object holding data (MovieId) about movie to be added to FavoriteMovies list</td>
                     <td>Show text that movie was added successfully/unsuccessfully to favorites</td>
                 </tr>
 
                 <tr class="update-user">
-                    <td>Allow users to update their user info (username)</td>
+                    <td>Allow users to update their user info (username, password, email, birthday)</td>
                     <td>/users/:Username</td>
                     <td>PUT</td>
                     <td>JSON object holding data about user to be updated</td>
-                    <td>JSON object holding data about user that was updated and text indicating whether the user was successfully updated</td>
+                    <td>JSON object holding data about updated user and text indicating whether or not the user was successfully updated</td>
                 </tr>
 
                 <tr class="remove-user">
@@ -113,10 +116,10 @@
                 </tr>
                 
                 <tr class="remove-favorite">
-                    <td>Allow users to remove a movie to their list of favorites</td>
+                    <td>Allow users to remove a movie from their FavoriteMovies list</td>
                     <td>/users/:Username/movies/:MovieID</td>
                     <td>DELETE</td>
-                    <td>JSON object holding data about movie to be removed from favorites</td>
+                    <td>JSON object holding data (MovieId) about the movie(s) to be removed from FavoriteMovies list</td>
                     <td>Show text that movie was added successfully/unsuccessfully from favorites</td>
                 </tr>
 
