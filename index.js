@@ -32,6 +32,7 @@ const passport = require('passport');
 require('./passport');
 
 mongoose.connect(process.env.CONNECTION_URI, {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb+srv://evandanowitz:mongosh21@moviedb.euy4zom.mongodb.net/movieDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
@@ -68,10 +69,14 @@ app.get('/movies/:title', passport.authenticate('jwt', { session: false }), asyn
     });
 });
 
-app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
+// app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.get('/genres/:name', async (req, res) => {
   await Movies.findOne({ 'Genre.Name': req.params.name })
     .then((movie) => {
-      res.status(200).json(movie);
+
+      console.log(movie);
+
+      res.status(200).json(movie.Genre);
     })
     .catch((err) => {
       console.error(err);
