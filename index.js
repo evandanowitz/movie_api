@@ -60,16 +60,20 @@ app.get("/documentation.html", (req, res) => {
   res.sendFile("public/documentation.html", { root: __dirname });
 });
 
-app.get("/movies", async (req, res) => {
-  await Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 app.get(
   "/movies/:title",
@@ -86,19 +90,22 @@ app.get(
   }
 );
 
-// app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
-app.get("/genres/:name", async (req, res) => {
-  await Movies.findOne({ "Genre.Name": req.params.name })
-    .then((movie) => {
-      console.log(movie);
+app.get(
+  "/genres/:name",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Movies.findOne({ "Genre.Name": req.params.name })
+      .then((movie) => {
+        console.log(movie);
 
-      res.status(200).json(movie.Genre);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+        res.status(200).json(movie.Genre);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 app.get(
   "/directors/:name",
