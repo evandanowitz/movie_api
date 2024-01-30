@@ -90,11 +90,13 @@ app.get(
   }
 );
 
-// app.get('/genres/:name', passport.authenticate('jwt', { session: false }), async (req, res) => {
-app.get("/genres/:name", async (req, res) => {
-  await Movies.findOne({ "Genre.Name": req.params.name })
-    .then((movie) => {
-      console.log(movie);
+app.get(
+  "/genres/:name",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Movies.findOne({ "Genre.Name": req.params.name })
+      .then((movie) => {
+        console.log(movie);
 
         res.status(200).json(movie.Genre);
       })
