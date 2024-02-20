@@ -213,7 +213,7 @@ app.put(
     check("Password", "Password is required").not().isEmpty(),
   ],
   async (req, res) => {
-    if (req.user.Username !== req.body.Username) {
+    if (req.user.Username !== req.params.Username) {
       return res.status(400).send("Permission denied");
     }
 
