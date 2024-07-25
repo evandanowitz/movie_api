@@ -177,7 +177,7 @@ app.post(
     await Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
-          return res.status(400).json({ message: ReadableStreamBYOBRequest.body.Username + " already exists" });
+          return res.status(400).json({ message: req.body.Username + " already exists" });
           // return res.status(400).send(req.body.Username + " already exists");
         } else {
           Users.create({
