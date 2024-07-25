@@ -168,6 +168,7 @@ app.post(
   async (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
       return res.status(422).json({ errors: errors.array() });
       // return res.status(422).send('Password required');
     }
@@ -176,7 +177,8 @@ app.post(
     await Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
-          return res.status(400).send(req.body.Username + " already exists");
+          return res.status(400).json({ message: ReadableStreamBYOBRequest.body.Username + " already exists" });
+          // return res.status(400).send(req.body.Username + " already exists");
         } else {
           Users.create({
             ID: req.body.Id,
@@ -189,14 +191,15 @@ app.post(
               res.status(201).json(user);
             })
             .catch((error) => {
-              console.error(error);
-              res.status(500).send("Error: " + error);
+              console.error('Error creating user:', error);
+              res.status(500).json({ message: "Error: " + error });
+              // res.status(500).send("Error: " + error);
             });
         }
       })
       .catch((error) => {
-        console.error(error);
-        res.status(500).send("Error: " + error);
+        console.error("Error finding user:", error);
+        res.status(500).json({ message: "Error: " + error });
       });
   }
 );
