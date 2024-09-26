@@ -78,7 +78,7 @@ The API endpoints were tested using Postman. You can test endpoints from the `in
 
 ## Deployment
 The API is deployed on Heroku and the code can be viewed in this repository.
-The Documentation for the Movie RESTful API can be accessed at by clicking [here](https://myflix-db-movie-app-af5513e7733f.herokuapp.com/).
+The Documentation for the Movie RESTful API can be accessed by clicking [here](https://myflix-db-movie-app-af5513e7733f.herokuapp.com/).
 
 ## Future Enhancements
 - Add functionality to track actors and movies they star in.
